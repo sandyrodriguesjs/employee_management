@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <title>Gerenciar funcionários</title>
+</head>
+<body>
+    <div class="container d-flex justify-content-center">
+        <div class="card mt-3 col-5">
+            <div class="card-header">
+                <h2>Menu</h2>
+                <p>Escolha a opção desejada:</p> 
+            </div>
+            <div class="card-body text-center">
+                <button style="border-radius: 10px;" class="btn btn-outline-primary mt-2" onclick="novoSalario()">Novo Salário</button>
+                <br/>
+                <button style="border-radius: 10px;" class="btn btn-outline-primary mt-2" onclick="valorFerias()">Férias</button>
+                <br/>
+                <button style="border-radius: 10px;" class="btn btn-outline-primary mt-2 border-radius" onclick="decimoTerceiro()">Décimo Terceiro</button>
+                <br/>
+                
+                <div class="text-center">
+                    <!-- <button style="border-radius: 10px;" class="btn btn-danger mt-2" href="welcome.html">Sair</button> -->
+                    <a class="btn btn-danger mt-2" href="welcome.html" role="button">Sair</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // atribuição das variáveis com as informações dadas pelo usuário
+        const salario = window.prompt("Informe o salário do funcionário: ")
+        const qtd_meses = window.prompt("Informe a quantidade de tempo de trabalho em meses: ")
+        
+        //função para calcular o decimo terceiro do funcionário
+        function decimoTerceiro(){
+
+            //condição que alerta ao usuário caso ele informe um valor não permitido
+            if(qtd_meses<0 || qtd_meses>12){
+                alert("Quantidade de meses inválida!")
+            } else{
+                decimo_terceiro = (salario * qtd_meses) / 12
+
+                //fixando o valor em duas casas decimais
+                decimo_terceiro_formatado = decimo_terceiro.toFixed(2)
+    
+                alert("Com base no salário de R$"+ salario +" o décimo terceiro ficou igual a: R$" + decimo_terceiro_formatado)
+            }
+
+        }
+
+        //função para calcular o valor das férias do funcionário
+        function valorFerias(){
+            // salario = window.prompt("Informe o salário do funcionário: ")
+
+            var ferias = parseInt(salario) + (parseInt(salario) * 1/3)
+
+            //fixando o valor em duas casas decimais
+            ferias_formatado = ferias.toFixed(2)
+
+            alert("Com base no salário de R$"+ salario +" o valor das férias ficou igual a: R$" + ferias_formatado)
+            
+        }
+
+        // função para aumento do salário
+        function novoSalario(){
+            // salario = window.prompt("Informe o salário do funcionário: ")
+
+            if(salario <= 1200){
+                aumento = salario * 0.15
+                novo_salario = parseInt(salario) + parseInt(aumento)
+            } 
+            
+            else if(salario >= 1200 && salario <= 2400){
+                aumento = salario * 0.10
+                novo_salario = parseInt(salario) + parseInt(aumento)
+
+            } else{
+                aumento = salario * 0.5
+                novo_salario = parseInt(salario) + parseInt(aumento)
+            }
+
+            //fixando o valor em duas casas decimais
+            novo_salario_formatado = novo_salario.toFixed(2)
+
+            alert("O salário que era de R$"+ salario +" com o aumento ficou igual a: R$" + novo_salario_formatado)
+        }
+
+        
+    </script>
+</body>
+</html>
